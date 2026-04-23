@@ -23,6 +23,8 @@ public:
     void Update() override;
     void Render() override;
 
+    void Initialize();
+
     // 座標だけでなくモデルのパスも外から受け取るようにする関数
     void InitParam(const char* intactModelPath, const char* brokenModelPath, const Vector3& position);
 

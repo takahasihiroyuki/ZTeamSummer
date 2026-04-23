@@ -16,6 +16,7 @@ namespace nsK2EngineLow
 		bool IsStart() const { return m_isStart; }
 		bool IsActive() const { return m_isActive; }
 
+
 		void Activate() { m_isActive = true; }
 		void Deactivate() { m_isActive = false; }
 
@@ -29,6 +30,7 @@ namespace nsK2EngineLow
 					//初期化処理完了。
 					m_isStart = true;
 				}
+
 			}
 		}
 

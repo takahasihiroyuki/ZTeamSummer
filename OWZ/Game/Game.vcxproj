@@ -276,6 +276,7 @@
     <ClCompile Include="Scene\SceneBase.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="InGameObject\Character\Playable\Soldier.cpp" />
+    <ClCompile Include="SkillSlotUIObject.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Component\Status\StatusComponent.cpp" />
     <ClCompile Include="InGameObject\Skill\Sprint.cpp" />
@@ -363,6 +364,7 @@
     <ClInclude Include="Scene\SceneBase.h" />
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="InGameObject\Character\Playable\Soldier.h" />
+    <ClInclude Include="SkillSlotUIObject.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SoundTypes.h" />
     <ClInclude Include="Component\Status\StatusComponent.h" />

@@ -3,13 +3,7 @@
 
 DestructibleObject::DestructibleObject()
 {
-    m_isDestroyed = false;
 
-    AddComponent<TransformComponent>();
-    AddComponent<ModelComponent>();
-
-    m_transform = GetComponent<TransformComponent>();
-    m_model = GetComponent<ModelComponent>();
 }
 
 DestructibleObject::~DestructibleObject()
@@ -59,6 +53,17 @@ void DestructibleObject::Render()
     if (m_model) {
         m_model->Draw();
     }
+}
+
+void DestructibleObject::Initialize()
+{
+    m_isDestroyed = false;
+
+    AddComponent<TransformComponent>();
+    AddComponent<ModelComponent>();
+
+    m_transform = GetComponent<TransformComponent>();
+    m_model = GetComponent<ModelComponent>();
 }
 
 void DestructibleObject::TakeDamage()

@@ -288,6 +288,7 @@
     <ClCompile Include="UIObfect.cpp">
       <Filter>UI\UIGameObject</Filter>
     </ClCompile>
+    <ClCompile Include="SkillSlotUIObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -387,6 +388,7 @@
     <ClInclude Include="UIObfect.h">
       <Filter>UI\UIGameObject</Filter>
     </ClInclude>
+    <ClInclude Include="SkillSlotUIObject.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="UI">
