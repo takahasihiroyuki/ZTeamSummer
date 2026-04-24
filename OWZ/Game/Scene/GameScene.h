@@ -7,6 +7,8 @@ public:
 	GameScene();
 	~GameScene();
 private:
+	//�f�o�b�O�p
+	std::unique_ptr<Soldier> m_soldier;
 
 public:
 	void Initialize() override;
