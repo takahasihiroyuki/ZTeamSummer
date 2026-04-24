@@ -21,10 +21,10 @@ class Canvas
 {
 private:
 	// 現在保持しているUI
-	std::vector<std::shared_ptr<UIObject>> m_uiObjects;
+	std::vector<std::unique_ptr<UIObject>> m_uiObjects;
 	// Update中に直接追加削除すると危険なので保留リストを持つ
-	std::vector<std::shared_ptr<UIObject>> m_pendingAddObjects;
-	std::vector<std::shared_ptr<UIObject>> m_pendingRemoveObjects;
+	std::vector<std::unique_ptr<UIObject>> m_pendingAddObjects;		// 追加保留リスト
+	std::vector<UIObject*> m_pendingRemoveObjects;					// 削除保留リスト(所有権は持たない)
 	bool m_isUpdating = false;
 	CanvasRenderMode m_renderMode = CanvasRenderMode::ScreenSpace;
 
@@ -35,25 +35,19 @@ private:
 	void FlushPending();
 
 public:
-	Canvas(CanvasRenderMode renderMode) :m_renderMode(renderMode)
-	{
-	}
-
-	Canvas() :Canvas(CanvasRenderMode::ScreenSpace)
-	{
-	}
-
-	~Canvas() = default;
+	Canvas(CanvasRenderMode renderMode);
+	Canvas();
+	~Canvas();
 
 	/// <summary>
 	/// CanvasにUIを追加。
 	/// </summary>
-	void AddUI(const std::shared_ptr<UIObject>& ui);
+	void AddUI(std::unique_ptr<UIObject> ui);
 
 	/// <summary>
-	/// CanvasからUIを削除。
+	/// Canvasから指定のUIを削除。
 	/// </summary>
-	void RemoveUI(const std::shared_ptr<UIObject>& ui);
+	void RemoveUI(UIObject* ui);
 
 	/// <summary>
 	/// Canvas内のUIを全部消す。
@@ -81,7 +75,7 @@ public:
 		return m_renderMode == CanvasRenderMode::WorldSpace;
 	}
 
-	const std::vector<std::shared_ptr<UIObject>>& GetUIObjects() const
+	const std::vector<std::unique_ptr<UIObject>>& GetUIObjects() const
 	{
 		return m_uiObjects;
 	}
