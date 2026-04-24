@@ -13,8 +13,8 @@ private:
 	float m_width = 64.0f;
 	float m_height = 64.0f;
 
-	float m_remainCooldown = 0.0f;	//ƒN[ƒ‹ƒ_ƒEƒ“‚ÌŽc‚èŽžŠÔ
-	float m_maxCooldown = 1.0f;		//ƒN[ƒ‹ƒ_ƒEƒ“‚ÌÅ‘åŽžŠÔ
+	float m_remainCooldown = 0.0f;	//ï¿½Nï¿½[ï¿½ï¿½ï¿½_ï¿½Eï¿½ï¿½ï¿½ÌŽcï¿½èŽžï¿½ï¿½
+	float m_maxCooldown = 1.0f;		//ï¿½Nï¿½[ï¿½ï¿½ï¿½_ï¿½Eï¿½ï¿½ï¿½ÌÅ‘åŽžï¿½ï¿½
 
 public:
 	void Init(
@@ -47,7 +47,7 @@ public:
 		if (m_cooldownGaugeTransform) {
 			m_cooldownGaugeTransform->SetScale({ m_width, fillHeight, 1.0f });
 
-			// ‰º‚©‚çã‚ÉL‚Î‚·‚½‚ßˆÊ’u•â³
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÉLï¿½Î‚ï¿½ï¿½ï¿½ï¿½ßˆÊ’uï¿½â³
 			float y = -(m_height * 0.5f) + (fillHeight * 0.5f);
 			m_cooldownGaugeTransform->SetLocalPosition({ 0.0f, y, 0.0f });
 		}
