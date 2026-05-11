@@ -1,8 +1,9 @@
 #pragma once
 #include "UITransform.h"
 #include "UIAnimationUtil.h"
+#include "UIAnimationComponentBase.h"
 
-class UIScaleAnimationComponent : public Component
+class UIScaleAnimationComponent : public UIAnimationComponentBase
 {
 	appClass(UIScaleAnimationComponent);
 private:
@@ -12,13 +13,16 @@ private:
 	Vector3 m_startScale = Vector3::One;
 	Vector3 m_endScale = Vector3::One;
 
-	float m_duration = 1.0f;
-	float m_elapsed = 0.0f;
-
-	bool m_isPlaying = false;
-	bool m_isLoop = false;
-
 public:
+
+	void Init(const Vector3& startScale, const Vector3& endScale, float duration, bool isLoop = false)
+	{
+		m_startScale = startScale;
+		m_endScale = endScale;
+		m_duration = duration;
+		m_isLoop = isLoop;
+	}
+
 	bool Start() override
 	{
 		m_transform = GetOwner()->GetComponent<UITransformBase>();
@@ -33,7 +37,7 @@ public:
 
 		m_elapsed += g_gameTime->GetFrameDeltaTime();
 
-		float t = (m_duration <= 0.0f) ? 1.0f : (m_elapsed / m_duration);
+		float t = GetAnimationT();
 		float easedT = UIAnimationUtil::EaseOutQuad(t);
 
 		Vector3 scale = UIAnimationUtil::Lerp(m_startScale, m_endScale, easedT);
@@ -55,18 +59,60 @@ public:
 	{
 		m_startScale = startScale;
 		m_endScale = endScale;
-		m_duration = duration;
-		m_elapsed = 0.0f;
-		m_isLoop = isLoop;
-		m_isPlaying = true;
+		PlayBase(duration, isLoop);
 
 		if (m_transform != nullptr) {
 			m_transform->SetScale(m_startScale);
 		}
 	}
 
-	void Stop()
+	void Play(bool isLoop = false)
 	{
-		m_isPlaying = false;
+		PlayBase(m_duration, isLoop);
+		if (m_transform != nullptr) {
+			m_transform->SetScale(m_startScale);
+		}
 	}
+
+	void Play()
+	{
+		PlayBase(m_duration, m_isLoop);
+		if (m_transform != nullptr) {
+			m_transform->SetScale(m_startScale);
+		}
+	}
+
+
+	void SetStartScale(const Vector3& startScale)
+	{
+		m_startScale = startScale;
+	}
+
+	void SetEndScale(const Vector3& endScale)
+	{
+		m_endScale = endScale;
+	}
+
+	Vector3 GetStartScale() const
+	{
+		return m_startScale;
+	}
+
+	Vector3 GetEndScale() const
+	{
+		return m_endScale;
+	}
+
+	/// <summary>
+	/// スケールと経過時間をリセットして、アニメーションを最初からやり直せるようにする。
+	/// この関数だけだとストップはしません。
+	/// </summary>
+	void Reset() override
+	{
+		m_elapsed = 0.0f;
+		if (m_transform != nullptr) {
+			m_transform->SetScale(m_startScale);
+		}
+	}
+
 };

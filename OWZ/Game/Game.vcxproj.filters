@@ -94,7 +94,6 @@
     <ClCompile Include="Component\Graphics\ViewModelComponent.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Component\Logic\InteractComponent.cpp" />
-    <ClCompile Include="DestructibleObject.cpp" />
     <ClCompile Include="Component\State\General\FlyState.cpp" />
     <ClCompile Include="Component\State\General\IdleState.cpp" />
     <ClCompile Include="Component\State\StateControllerComponent.cpp" />
@@ -174,9 +173,6 @@
       <Filter>Component\State\Soldier</Filter>
     </ClCompile>
     <ClCompile Include="Component\State\IAIState.cpp">
-      <Filter>Component\State</Filter>
-    </ClCompile>
-    <ClCompile Include="Component\State\IState.cpp">
       <Filter>Component\State</Filter>
     </ClCompile>
     <ClCompile Include="Component\State\StateControllerComponent.cpp">
@@ -289,6 +285,15 @@
       <Filter>UI\UIGameObject</Filter>
     </ClCompile>
     <ClCompile Include="SkillSlotUIObject.cpp" />
+    <ClCompile Include="UISelectorComponent.cpp">
+      <Filter>UI\UIComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="UIButtonSelectableComponent.cpp">
+      <Filter>UI\UIComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="UISelectableComponent.cpp">
+      <Filter>UI\UIComponent</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -389,6 +394,15 @@
       <Filter>UI\UIGameObject</Filter>
     </ClInclude>
     <ClInclude Include="SkillSlotUIObject.h" />
+    <ClInclude Include="UISelectorComponent.h">
+      <Filter>UI\UIComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="UIButtonSelectableComponent.h">
+      <Filter>UI\UIComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="UISelectableComponent.h">
+      <Filter>UI\UIComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="UI">

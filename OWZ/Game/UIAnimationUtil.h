@@ -2,6 +2,8 @@
 
 namespace UIAnimationUtil
 {
+	using EaseFunction = float(*)(float);
+
 	inline float Clamp(float t)
 	{
 		if (t < 0.0f)

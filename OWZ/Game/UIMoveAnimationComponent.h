@@ -1,8 +1,9 @@
 #pragma once
 #include "UITransform.h"
 #include "UIAnimationUtil.h"
+#include "UIAnimationComponentBase.h"
 
-class UIMoveAnimationComponent : public Component
+class UIMoveAnimationComponent : public UIAnimationComponentBase
 {
 	appClass(UIMoveAnimationComponent);
 private:
@@ -11,13 +12,17 @@ private:
 	Vector3 m_startPosition = Vector3::Zero;
 	Vector3 m_endPosition = Vector3::Zero;
 
-	float m_duration = 1.0f;
-	float m_elapsed = 0.0f;
-
-	bool m_isPlaying = false;
-	bool m_isLoop = false;
-
 public:
+
+	void Init(const Vector3& startPos, const Vector3& endPos, float duration, bool isLoop = false)
+	{
+		m_startPosition = startPos;
+		m_endPosition = endPos;
+		m_duration = duration;
+		m_isLoop = isLoop;
+		m_isPlaying = false;
+	}
+
 	bool Start() override
 	{
 
@@ -33,7 +38,7 @@ public:
 
 		m_elapsed += g_gameTime->GetFrameDeltaTime();
 
-		float t = (m_duration <= 0.0f) ? 1.0f : (m_elapsed / m_duration);
+		float t = GetAnimationT();
 		float easedT = UIAnimationUtil::EaseOutQuad(t);
 
 		Vector3 pos = UIAnimationUtil::Lerp(m_startPosition, m_endPosition, easedT);
@@ -55,23 +60,50 @@ public:
 	{
 		m_startPosition = startPos;
 		m_endPosition = endPos;
-		m_duration = duration;
-		m_elapsed = 0.0f;
-		m_isLoop = isLoop;
-		m_isPlaying = true;
+		PlayBase(duration, isLoop);
 
 		if (m_transform != nullptr) {
 			m_transform->SetLocalPosition(m_startPosition);
 		}
 	}
 
-	void Stop()
+	void Play()
 	{
-		m_isPlaying = false;
+		PlayBase(m_duration, m_isLoop);
+		if (m_transform != nullptr) {
+			m_transform->SetLocalPosition(m_startPosition);
+		}
 	}
 
-	bool IsPlaying() const
+	/// <summary>
+	/// 位置と経過時間をリセットして、アニメーションを最初からやり直せるようにする。
+	/// この関数だけだとストップはしません。
+	/// </summary>
+	void Reset() override
 	{
-		return m_isPlaying;
+		m_elapsed = 0.0f;
+		if (m_transform != nullptr) {
+			m_transform->SetLocalPosition(m_startPosition);
+		}
+	}
+
+	void SetStartPosition(const Vector3& startPos)
+	{
+		m_startPosition = startPos;
+	}
+
+	void SetEndPosition(const Vector3& endPos)
+	{
+		m_endPosition = endPos;
+	}
+
+	Vector3 GetStartPosition() const
+	{
+		return m_startPosition;
+	}
+
+	Vector3 GetEndPosition() const
+	{
+		return m_endPosition;
 	}
 };

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -297,11 +297,17 @@
     <ClCompile Include="Scene\TitleScene.cpp" />
     <ClCompile Include="Component\Math\TransformComponent.cpp" />
     <ClCompile Include="Component\Math\Transform.cpp" />
+    <ClCompile Include="UIAnimationComponentBase.cpp" />
+    <ClCompile Include="UIButtonSelectableComponent.cpp" />
     <ClCompile Include="UIColorAnimationComponent.cpp" />
+    <ClCompile Include="UIEffectClip.cpp" />
+    <ClCompile Include="UIEffectComponent.cpp" />
     <ClCompile Include="UIFollowComponent.cpp" />
     <ClCompile Include="UIMoveAnimationComponent.cpp" />
     <ClCompile Include="UIObfect.cpp" />
     <ClCompile Include="UIScaleAnimationComponent.cpp" />
+    <ClCompile Include="UISelectableComponent.cpp" />
+    <ClCompile Include="UISelectorComponent.cpp" />
     <ClCompile Include="UISystem.cpp" />
     <ClCompile Include="UITransform.cpp" />
     <ClCompile Include="InGameObject\Weapon\WeaponBase.cpp" />
@@ -383,11 +389,17 @@
     <ClInclude Include="Component\Math\TransformComponent.h" />
     <ClInclude Include="Component\Collision\CollisionDefine.h" />
     <ClInclude Include="Component\Math\Transform.h" />
+    <ClInclude Include="UIAnimationComponentBase.h" />
     <ClInclude Include="UIAnimationUtil.h" />
+    <ClInclude Include="UIButtonSelectableComponent.h" />
     <ClInclude Include="UIColorAnimationComponent.h" />
+    <ClInclude Include="UIEffectClip.h" />
+    <ClInclude Include="UIEffectComponent.h" />
     <ClInclude Include="UIFollowComponent.h" />
     <ClInclude Include="UIMoveAnimationComponent.h" />
     <ClInclude Include="UIScaleAnimationComponent.h" />
+    <ClInclude Include="UISelectableComponent.h" />
+    <ClInclude Include="UISelectorComponent.h" />
     <ClInclude Include="Util\Json\Json.h" />
     <ClInclude Include="Util\Json\json.hpp" />
     <ClInclude Include="UIObfect.h" />
