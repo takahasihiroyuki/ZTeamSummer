@@ -294,6 +294,18 @@
     <ClCompile Include="UISelectableComponent.cpp">
       <Filter>UI\UIComponent</Filter>
     </ClCompile>
+    <ClCompile Include="UIEffectClip.cpp">
+      <Filter>UI\UIComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="UIEffectComponent.cpp">
+      <Filter>UI\UIComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="UIAnimationComponentBase.cpp">
+      <Filter>UI\UIComponent\UIAnimation</Filter>
+    </ClCompile>
+    <ClCompile Include="UIEffectID.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -381,9 +393,6 @@
     <ClInclude Include="BarUIObject.h">
       <Filter>UI\UIGameObject</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteComponent.h">
-      <Filter>UI\UIComponent</Filter>
-    </ClInclude>
     <ClInclude Include="UIFollowComponent.h">
       <Filter>UI\UIComponent</Filter>
     </ClInclude>
@@ -402,6 +411,21 @@
     </ClInclude>
     <ClInclude Include="UISelectableComponent.h">
       <Filter>UI\UIComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteComponent.h">
+      <Filter>UI\UIComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="UIEffectComponent.h">
+      <Filter>UI\UIComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="UIEffectClip.h">
+      <Filter>UI\UIComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="UIAnimationComponentBase.h">
+      <Filter>UI\UIComponent\UIAnimation</Filter>
+    </ClInclude>
+    <ClInclude Include="UIEffectID.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

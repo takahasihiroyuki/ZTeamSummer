@@ -302,6 +302,7 @@
     <ClCompile Include="UIColorAnimationComponent.cpp" />
     <ClCompile Include="UIEffectClip.cpp" />
     <ClCompile Include="UIEffectComponent.cpp" />
+    <ClCompile Include="UIEffectID.cpp" />
     <ClCompile Include="UIFollowComponent.cpp" />
     <ClCompile Include="UIMoveAnimationComponent.cpp" />
     <ClCompile Include="UIObfect.cpp" />
@@ -395,6 +396,7 @@
     <ClInclude Include="UIColorAnimationComponent.h" />
     <ClInclude Include="UIEffectClip.h" />
     <ClInclude Include="UIEffectComponent.h" />
+    <ClInclude Include="UIEffectID.h" />
     <ClInclude Include="UIFollowComponent.h" />
     <ClInclude Include="UIMoveAnimationComponent.h" />
     <ClInclude Include="UIScaleAnimationComponent.h" />
