@@ -65,6 +65,14 @@ public:
 		}
 	}
 
+	void Play(bool isLoop = false)
+	{
+		PlayBase(m_duration, isLoop);
+		if (m_sprite != nullptr) {
+			m_sprite->SetMulColor(m_startColor);
+		}
+	}
+
 	void Play() override
 	{
 		PlayBase(m_duration, m_isLoop);

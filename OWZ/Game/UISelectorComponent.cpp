@@ -1,48 +1,101 @@
 #include "stdafx.h"
 #include "UISelectorComponent.h"
+#include "UISelectableComponent.h"
+#include "UIObfect.h"
 
-class UISelectorComponent : public nsK2EngineLow::Component
+void UISelectorComponent::DecideCurrent()
 {
-	appClass(UISelectableComponent)
-
-public:
-	UISelectorComponent()
-	{
+	auto currentItem = GetCurrentItem();
+	if (currentItem != nullptr) {
+		currentItem->OnDecide();
 	}
-	virtual ~UISelectorComponent() noexcept = default;
-	void Update() override
-	{
-		// ここで入力を見て、UIの選択を切り替える処理を書く。
-		// 例えば、十字キーの左右で選択を切り替えるとか。
+}
+
+void UISelectorComponent::AdjustValue(float delta)
+{
+	auto currentItem = GetCurrentItem();
+	if (currentItem != nullptr) {
+		currentItem->AdjustValue(delta);
 	}
+}
 
-	void SetSelected(bool isSelected)
-	{
-		if (!m_isSelectable) {
-			return; // 選択不可なら選択状態を変更しない
-		}
-		m_isSelected = isSelected;
-
+void UISelectorComponent::AddItem(UISelectableComponent* item)
+{
+	if (item == nullptr) {
+		return;
 	}
 
-	void SetSelectable(bool isSelectable)
-	{
-		m_isSelectable = isSelectable;
-		if (!m_isSelectable) {
-			m_isSelected = false; // 選択不可にしたら選択状態も解除する
-		}
-	
+	m_items.push_back(item);
+
+	if (m_items.size() == 1) {
+		m_index = 0;
+		m_items[0]->SetSelected(true);
 	}
-	bool IsSelectable() const
-	{
-		return m_isSelectable;
+	else {
+		item->SetSelected(false);
+	}
+}
+
+void UISelectorComponent::AddItem(UIObject* item)
+{
+	if (item == nullptr) {
+		return;
 	}
 
-	bool IsSelected() const
-	{
-		return m_isSelected;
+	auto selectable = item->GetComponent<UISelectableComponent>();
+
+	if (selectable == nullptr) {
+		return;
 	}
-private:
-	bool m_isSelected = false;		// このUIが現在選択されているかどうか
-	bool m_isSelectable = true;		// このUIが選択可能かどうか
-};
+
+	AddItem(selectable);
+
+}
+
+void UISelectorComponent::SelectNext()
+{
+	//　インデックスが不正な値は早期リターン
+	if (m_index < 0 || m_index >= static_cast<int>(m_items.size())) {
+		return;
+	}
+
+	//現在のインデックスが最後のアイテムを指している場合は早期リターン
+	if (m_index >= static_cast<int>(m_items.size()) - 1) {
+		return;
+	}
+
+	m_items[m_index]->SetSelected(false);
+
+	m_index++;
+
+	m_items[m_index]->SetSelected(true);
+}
+
+void UISelectorComponent::SelectPrev()
+{
+
+	//インデックスが不正な値は早期リターン
+	if (m_index < 0 || m_index >= static_cast<int>(m_items.size())) {
+		return;
+	}
+
+	//現在のインデックスが最初のアイテムを指している場合は早期リターン
+	if (m_index <= 0) {
+		return;
+	}
+
+	m_items[m_index]->SetSelected(false);
+
+	m_index--;
+
+	m_items[m_index]->SetSelected(true);
+}
+
+UISelectableComponent* UISelectorComponent::GetCurrentItem() const
+{
+	if (m_index < 0 || m_index >= static_cast<int>(m_items.size())) {
+		return nullptr;
+	}
+	return m_items[m_index];
+
+}

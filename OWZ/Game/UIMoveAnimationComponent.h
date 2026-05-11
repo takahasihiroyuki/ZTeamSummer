@@ -67,6 +67,14 @@ public:
 		}
 	}
 
+	void Play(bool isLoop = false)
+	{
+		PlayBase(m_duration, isLoop);
+		if (m_transform != nullptr) {
+			m_transform->SetLocalPosition(m_startPosition);
+		}
+	}
+
 	void Play()
 	{
 		PlayBase(m_duration, m_isLoop);
