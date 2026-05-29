@@ -3,6 +3,12 @@
 #include "UIEffectComponent.h"
 #include "UIEffectID.h"
 
+bool UISelectableComponent::Start()
+{
+	m_effect = GetOwner()->GetComponent<UIEffectComponent>();
+	return true;
+}
+
 void UISelectableComponent::OnDecide()
 {
 	//UI‚Ì‰‰o

@@ -3,31 +3,34 @@
 #include <array>
 #include <cstddef>
 
-enum class SoundKind
-{
-	BgmTitle,
-	SeShot,
-	SeExplosion,//爆発音
-	Count
-};
+using SoundIndex = int;
+
+constexpr SoundIndex InvalidSoundIndex = -1;
 
 
 /** サウンドの情報の構造体 */
 struct SoundInformation
 {
-	std::string assetPath;
-	//
-	SoundInformation(const std::string& path) : assetPath(path) {}
+	const char* name;		//サウンドの名前
+	const std::string assetPath;
+
+	SoundInformation(const std::string& path, const char* soundName) : assetPath(path), name(soundName) {}
 };
 
-constexpr std::size_t ToIndex(SoundKind kind)
+inline SoundIndex GetSoundIndex(const std::string& name)
 {
-	return static_cast<std::size_t>(kind);
+	for (std::size_t i = 0; i < soundInformation.size(); ++i) {
+		if (soundInformation[i].name == name) {
+			return static_cast<SoundIndex>(i);
+		}
+	}
+
+	return InvalidSoundIndex;
 }
 
-static std::array<SoundInformation, ToIndex(SoundKind::Count)> soundInformation =
+static std::vector<SoundInformation> soundInformation =
 {
-	SoundInformation("Assets/sound/bgm_title.wav"),     // BgmTitle
-	SoundInformation("Assets/sound/se_gun_shot.wav"),   // SeShot
-	SoundInformation("Assets/sound/se_explosion.wav"),  // SeExplosion
+	SoundInformation("Assets/sound/bgm_title.wav", "BgmTitle"),     // BgmTitle
+	SoundInformation("Assets/sound/se_gun_shot.wav", "SeShot"),   // SeShot
+	SoundInformation("Assets/sound/se_explosion.wav", "SeExplosion"),  // SeExplosion
 };

@@ -65,7 +65,7 @@ public:
 		}
 	}
 
-	void Play(bool isLoop = false)
+	void Play(bool isLoop)
 	{
 		PlayBase(m_duration, isLoop);
 		if (m_sprite != nullptr) {

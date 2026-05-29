@@ -12,11 +12,11 @@ void ResultUI::Init()
 	// qUI‚ğì‚é
 	AddChildren<ScreenSpaceUIObject>("resultText");
 
+	m_resultText = static_cast<ScreenSpaceUIObject*>(GetChildren("resultText"));
+
 	if (m_resultText == nullptr) {
 		return;
 	}
-
-	m_resultText = static_cast<ScreenSpaceUIObject*>(GetChildren("resultText"));
 
 	// ‰æ‘œ‰Šú‰»
 	// Å‰‰¼‚Åclear‚ğ“ü‚ê‚Ä‚¨‚­
@@ -72,7 +72,6 @@ void ResultUI::Hide()
 
 void ResultUI::Render()
 {
-	m_resultText->Render();
 }
 
 void ResultUI::SetChildrenVisible(bool isVisible)

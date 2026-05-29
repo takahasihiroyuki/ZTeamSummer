@@ -1,4 +1,5 @@
 #pragma once
+#include"UIAnimationUtil.h"
 class UIAnimationComponentBase : public Component
 {
 protected:

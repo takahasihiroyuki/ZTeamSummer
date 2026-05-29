@@ -303,9 +303,6 @@
     <ClCompile Include="UIAnimationComponentBase.cpp">
       <Filter>UI\UIComponent\UIAnimation</Filter>
     </ClCompile>
-    <ClCompile Include="UIEffectID.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />

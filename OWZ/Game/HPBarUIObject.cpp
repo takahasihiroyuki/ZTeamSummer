@@ -157,7 +157,8 @@ void EnemyHpBarUI::Init(DummyEnemy* enemy)
 	);
 	m_bar->SetRate(1.0f);
 
-	AddComponent<WorldUIFollowComponent>(enemy, m_offset);
+	AddComponent<WorldUIFollowComponent>();
+	GetComponent<WorldUIFollowComponent>()->Init(enemy, m_offset);
 
 }
 

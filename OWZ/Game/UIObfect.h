@@ -2,17 +2,11 @@
 #include"UITransform.h"
 #include"SpriteComponent.h"
 
-enum class UIVisualType
-{
-	None,// 見た目なし。(子のUIを持つだけのオブジェクトなど)
-	Sprite
-};
-
 class UIObject :public nsK2EngineLow::GameObject
 {
 protected:
-	UIVisualType m_visualType = UIVisualType::Sprite;
-	bool m_isDestroyRequested = false;
+	bool m_isDestroyRequested = false;	//削除のリクエスト
+	bool m_hasVisual = false;			//見た目があるかどうか
 public:
 
 	UIObject()
@@ -21,21 +15,25 @@ public:
 
 	virtual ~UIObject() noexcept = default;
 
-	void Init()
-	{
-		m_visualType = UIVisualType::None;
-	}
+	virtual void Init() {};
 
-	void Init(
+	/// <summary>
+	/// 初期化
+	/// 見た目をつけたい場合だけ呼び出してください
+	/// </summary>
+	/// <param name="filePath"></param>
+	/// <param name="w"></param>
+	/// <param name="h"></param>
+	/// <param name="alphaBlendMode"></param>
+	virtual void Init(
 		const char* filePath,
 		float w,
 		float h,
 		AlphaBlendMode alphaBlendMode = AlphaBlendMode_Trans
 	)
 	{
-		m_visualType = UIVisualType::Sprite;
-
-		auto sprite = AddComponent<SpriteComponent>();;
+		m_hasVisual = true;
+		auto sprite = AddComponent<SpriteComponent>();
 		if (sprite != nullptr) {
 			sprite->Init(filePath, w, h, alphaBlendMode);
 		}
@@ -43,12 +41,9 @@ public:
 
 	void Render() override
 	{
-		if (m_visualType == UIVisualType::None)return;
-
+		if (!m_hasVisual)return;
 		auto sprite = GetComponent<SpriteComponent>();
-		if (sprite != nullptr) {
-			sprite->Render();
-		}
+		sprite->Render();
 	}
 
 	/// <summary>
@@ -69,11 +64,6 @@ public:
 	bool IsDestroyRequested() const
 	{
 		return m_isDestroyRequested;
-	}
-
-	UIVisualType GetVisualType() const
-	{
-		return m_visualType;
 	}
 };
 
@@ -118,9 +108,8 @@ public:
 	{
 	}
 
-	void Init()
+	void Init() override
 	{
-		UIObject::Init();
 		AddComponent<WorldUITransformComponent>();
 	}
 
@@ -128,7 +117,7 @@ public:
 		const char* filePath,
 		float w,
 		float h,
-		AlphaBlendMode alphaBlendMode = AlphaBlendMode_Trans)
+		AlphaBlendMode alphaBlendMode = AlphaBlendMode_Trans)override
 	{
 		UIObject::Init(filePath, w, h, alphaBlendMode);
 

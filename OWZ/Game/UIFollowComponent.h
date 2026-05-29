@@ -10,10 +10,15 @@ private:
 	Vector3 m_offset = Vector3::Zero;
 
 public:
-	WorldUIFollowComponent(GameObject* target, const Vector3& offset)
-		:m_target(target),
-		m_offset(offset) {
+	WorldUIFollowComponent()
+	{
 	};
+
+	void Init(GameObject* target, const Vector3& offset)
+	{
+		m_target = target;
+		m_offset = offset;
+	}
 
 	void SetTarget(GameObject* target)
 	{

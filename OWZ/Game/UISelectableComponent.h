@@ -14,11 +14,7 @@ class UISelectableComponent : public Component
 	appClass(UISelectableComponent);
 public:
 
-	bool Start() override
-	{
-		m_effect = GetOwner()->GetComponent<UIEffectComponent>();
-		return true;
-	}
+	bool Start() override;
 
 	virtual void SetSelected(bool isSelected)
 	{

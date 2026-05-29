@@ -85,7 +85,7 @@ namespace nsK2EngineLow
 		bool m_isStart = false;							//Startの開始フラグ。
 		bool m_isActive = true;							//Activeフラグ。
 
-		GameObject* m_parent;
+		GameObject* m_parent = nullptr;//ヌルが入っていなかったので修正しました
 		std::unordered_map <std::string, std::unique_ptr<GameObject>> m_children;
 
 		std::unordered_map <uint32_t, std::unique_ptr<Component>> m_componentList;

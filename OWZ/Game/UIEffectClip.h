@@ -1,40 +1,63 @@
 #pragma once
+#include"SoundTypes.h"
+#include"SoundManager.h"
+
+using SoundID = uint32_t;
+
+struct UIScaleEffectData
+{
+	Vector3 from;
+	Vector3 to;
+	float duration;
+	SoundID easing;
+};
+
+struct UIMoveEffectData
+{
+	Vector3 from;
+	Vector3 to;
+	float duration;
+	SoundID easing;
+};
+
+struct UISoundEffectData
+{
+	const char* soundPath;
+	float delay;
+};
 
 /// <summary>
 /// 一つのUIの演出のまとまりのクラスです
 /// 例：UIの選択時の演出、決定時の演出など
 /// 一つの演出にこのクラスのインスタンスをひとつ作ります。
-/// 演出で使うアニメーションやサウンドはメンバとして持ちません
-/// 代わりに、AddAction()の引数でアニメーションなどをキャプチャして再生する関数オブジェクトを渡してください
 /// </summary>
+class UIAnimationComponentBase;
 class UIEffectClip
 {
+	appClass(UIEffectClip);
 public:
 
-	/// <summary>
-	/// アクションを追加
-	///　演出に使うUIアニメーションやサウンドの再生などを関数オブジェクトとしてください
-	/// </summary>
-	/// <param name="action"></param>
-	void AddAction(std::function<void()> action)
+	void AddSound(SoundID soundKind)
 	{
-		// アクションを追加
-		//コピーコストを避けるため、ムーブで追加する
-		m_actions.push_back(std::move(action));
+		m_sounds.push_back(soundKind);
 	}
 
-	void Play()
+
+	void AddAnimation(UIAnimationComponentBase* animation)
 	{
-		for (auto& action : m_actions) {
-			action();
+		if (animation == nullptr) {
+			return;
 		}
+
+		m_animations.push_back(animation);
 	}
 
-	bool IsEmpty() const
-	{
-		return m_actions.empty();
-	}
+
+	void Play();
+
+	bool IsEmpty() const;
 
 private:
-	std::vector<std::function<void()>> m_actions;
+	std::vector<UIAnimationComponentBase*> m_animations;
+	std::vector<SoundID> m_sounds;
 };

@@ -5,16 +5,16 @@ namespace
 {
 	static const char* NUMBER_PATHS[10] =
 	{
-		"Assets/ui/number/num_0.DDS",
-		"Assets/ui/number/num_1.DDS",
-		"Assets/ui/number/num_2.DDS",
-		"Assets/ui/number/num_3.DDS",
-		"Assets/ui/number/num_4.DDS",
-		"Assets/ui/number/num_5.DDS",
-		"Assets/ui/number/num_6.DDS",
-		"Assets/ui/number/num_7.DDS",
-		"Assets/ui/number/num_8.DDS",
-		"Assets/ui/number/num_9.DDS"
+		"Assets/image/ui/number/0.DDS",
+		"Assets/image/ui/number/1.DDS",
+		"Assets/image/ui/number/2.DDS",
+		"Assets/image/ui/number/3.DDS",
+		"Assets/image/ui/number/4.DDS",
+		"Assets/image/ui/number/5.DDS",
+		"Assets/image/ui/number/6.DDS",
+		"Assets/image/ui/number/7.DDS",
+		"Assets/image/ui/number/8.DDS",
+		"Assets/image/ui/number/9.DDS"
 	};
 }
 
